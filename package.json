@@ -1,0 +1,40 @@
+{
+  "name": "nycklar",
+  "version": "0.0.1",
+  "author": "Daniel Reed",
+  "keywords": [],
+  "description": "",
+  "license": "MIT",
+  "type": "module",
+  "source": "./src/index.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "test": "ava",
+    "test:watch": "ava --watch"
+  },
+  "devDependencies": {
+    "@ava/typescript": "^4.1.0",
+    "ava": "^6.0.1",
+    "microbundle": "^0.15.1"
+  },
+  "dependencies": {
+    "debounce": "^2.0.0"
+  },
+  "ava": {
+    "typescript": {
+      "compile": "tsc",
+      "rewritePaths": {
+        "source/": "dist/"
+      }
+    }
+  }
+}
