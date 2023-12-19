@@ -72,15 +72,3 @@ export const nycklar = (
     target.removeEventListener(event, mapEvents);
   };
 };
-
-nycklar(window, {
-  d: () => {
-    console.log("pressed d");
-  },
-  abc: () => {
-    console.log("pressed abc");
-  },
-  "Shift+D": () => {
-    console.log("pressed shift d");
-  },
-});
