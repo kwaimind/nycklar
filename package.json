@@ -23,8 +23,17 @@
   },
   "devDependencies": {
     "@ava/typescript": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
     "ava": "^6.0.1",
-    "microbundle": "^0.15.1"
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "microbundle": "^0.15.1",
+    "prettier": "3.1.1",
+    "typescript": "*"
   },
   "dependencies": {
     "debounce": "^2.0.0"
