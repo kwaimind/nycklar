@@ -54,7 +54,12 @@ export const nycklar = (
   };
 
   const mapEvents = (e: Event) => {
+    // INFO: we only care about keyboard events
     if (!(e instanceof KeyboardEvent)) return;
+
+    // INFO: we don't want to listen to user input keystrokes
+    if (e.target instanceof HTMLInputElement) return;
+
     const hasMetaKey = e.altKey || e.ctrlKey || e.shiftKey;
     keysPressed.push(e.key);
     const result = keysPressed.join(hasMetaKey ? "+" : "");
