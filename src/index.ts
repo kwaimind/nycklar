@@ -13,6 +13,16 @@ interface TOptions {
   event?: TEventType;
 }
 
+const triggerCallback = (
+  key: string,
+  keyEvents: TEventsMap,
+  event: KeyboardEvent
+) => {
+  if (key in keyEvents) {
+    keyEvents[key](event);
+  }
+};
+
 /**
  * A basic prototype of the tinykeys lib
  * Takes a target and a map of key events to listen to an a function to call when matched
@@ -46,13 +56,6 @@ export const nycklar = (
 
   let timer: number | null = null;
 
-  const assertKeys = (key: string, event: KeyboardEvent) => {
-    if (key in keyEvents) {
-      keyEvents[key](event);
-    }
-    keysPressed = [];
-  };
-
   const mapEvents = (e: Event) => {
     // INFO: we only care about keyboard events
     if (!(e instanceof KeyboardEvent)) return;
@@ -67,7 +70,8 @@ export const nycklar = (
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      assertKeys(result, e);
+      triggerCallback(result, keyEvents, e);
+      keysPressed = [];
     }, timeout);
   };
 
