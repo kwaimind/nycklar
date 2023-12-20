@@ -63,7 +63,7 @@ export const nycklar = (
     const hasMetaKey = e.altKey || e.ctrlKey || e.shiftKey;
     keysPressed.push(e.key);
     const result = keysPressed.join(hasMetaKey ? "+" : "");
-    if (typeof timer === "number") {
+    if (timer !== null) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {

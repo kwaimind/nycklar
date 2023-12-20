@@ -49,23 +49,40 @@ describe("nycklar", () => {
     expect(keyEvents.a).not.toHaveBeenCalled();
   });
 
-  it.skip("should handle shift key presses", () => {
+  it("should handle shift key presses", () => {
     nycklar(window, keyEvents);
 
-    const eventA = createKeyboardEvent("d", { shiftKey: true });
+    const eventA = createKeyboardEvent("Shift", { shiftKey: true });
+    const eventB = createKeyboardEvent("D", { shiftKey: true });
     window.dispatchEvent(eventA);
+    window.dispatchEvent(eventB);
 
     jest.runOnlyPendingTimers();
 
     expect(keyEvents["Shift+D"]).toHaveBeenCalled();
+    expect(keyEvents.ab).not.toHaveBeenCalled();
   });
 
-  /* test("should handle key presses with meta key", () => {
-    const eventA = createKeyboardEvent("a", { altKey: true });
-    const eventB = createKeyboardEvent("b", { ctrlKey: true });
-    document.dispatchEvent(eventA);
-    document.dispatchEvent(eventB);
-    expect(keyEvents["a+Alt"]).toHaveBeenCalledWith(eventA);
-    expect(keyEvents["b+Control"]).toHaveBeenCalledWith(eventB);
-  }); */
+  it("should ignore non-keyboard events", () => {
+    nycklar(window, keyEvents);
+
+    const eventA = new MouseEvent("click");
+    window.dispatchEvent(eventA);
+
+    jest.runOnlyPendingTimers();
+
+    expect(keyEvents.a).not.toHaveBeenCalled();
+  });
+
+  it("should ignore input events", () => {
+    const target = document.createElement("input");
+    nycklar(target, keyEvents);
+
+    const eventA = createKeyboardEvent("a");
+    target.dispatchEvent(eventA);
+
+    jest.runOnlyPendingTimers();
+
+    expect(keyEvents.a).not.toHaveBeenCalled();
+  });
 });
