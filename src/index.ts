@@ -61,7 +61,14 @@ export const nycklar = (
 		if (!(e instanceof KeyboardEvent)) return;
 
 		// INFO: we don't want to listen to user input keystrokes
-		if (e.target instanceof HTMLInputElement) return;
+		if (
+			e.target instanceof HTMLInputElement ||
+			e.target instanceof HTMLTextAreaElement ||
+			(e.target instanceof HTMLElement &&
+				(e.target.isContentEditable ||
+					e.target.contentEditable === "true"))
+		)
+			return;
 
 		const hasMetaKey = e.altKey || e.ctrlKey || e.shiftKey;
 		keysPressed.push(e.key);

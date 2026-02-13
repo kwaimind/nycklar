@@ -86,4 +86,31 @@ describe("nycklar", () => {
 
 		expect(keyEvents.a).not.toHaveBeenCalled();
 	});
+
+	it("should ignore textarea events", () => {
+		const target = document.createElement("textarea");
+		nycklar(target, keyEvents);
+
+		const eventA = createKeyboardEvent("a");
+		target.dispatchEvent(eventA);
+
+		vi.runOnlyPendingTimers();
+
+		expect(keyEvents.a).not.toHaveBeenCalled();
+	});
+
+	it("should ignore contentEditable events", () => {
+		const target = document.createElement("div");
+		target.contentEditable = "true";
+		document.body.appendChild(target);
+		nycklar(target, keyEvents);
+
+		const eventA = createKeyboardEvent("a");
+		target.dispatchEvent(eventA);
+
+		vi.runOnlyPendingTimers();
+
+		expect(keyEvents.a).not.toHaveBeenCalled();
+		document.body.removeChild(target);
+	});
 });
