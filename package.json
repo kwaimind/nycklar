@@ -6,6 +6,7 @@
   "description": "",
   "license": "MIT",
   "type": "module",
+  "packageManager": "pnpm@10.23.0",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
