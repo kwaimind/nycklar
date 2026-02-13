@@ -1,6 +1,6 @@
 {
   "name": "nycklar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Daniel Reed",
   "keywords": [],
   "description": "",
@@ -14,7 +14,9 @@
     }
   },
   "types": "./dist/index.d.mts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
