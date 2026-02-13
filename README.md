@@ -27,14 +27,12 @@ If you're using nycklar within a component, you should also make use of the retu
 import { useEffect } from "react";
 import { nycklar } from "nycklar";
 
-const myKeybindingsHook = () => {
-  useEffect(() => {
-    let cleanup = nycklar(window, {
-      // ...
-    });
-    return () => {
-      cleanup();
-    };
+useEffect(() => {
+  let cleanup = nycklar(window, {
+    // ...
   });
-};
+  return () => {
+    cleanup();
+  };
+});
 ```
