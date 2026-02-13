@@ -1,0 +1,195 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  padding: 1.5rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #a78bfa;
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 0.95rem;
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.panels {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.panel {
+  flex: 1;
+  background: #16213e;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+/* Config panel */
+.shortcut-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.shortcut-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.shortcut-row input {
+  flex: 1;
+}
+
+input, select {
+  background: #0f3460;
+  border: 1px solid #334;
+  color: #e0e0e0;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #a78bfa;
+  outline-offset: -1px;
+}
+
+button {
+  background: #a78bfa;
+  color: #1a1a2e;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #8b6fde;
+}
+
+.shortcut-row button {
+  background: #e74c5a;
+  color: white;
+  padding: 0.4rem 0.6rem;
+}
+
+.shortcut-row button:hover {
+  background: #c0392b;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.options label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.options input, .options select {
+  width: 140px;
+}
+
+.help-text {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: #888;
+  line-height: 1.4;
+}
+
+.help-text code {
+  background: #0f3460;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.78rem;
+}
+
+/* Test panel */
+.test-target {
+  background: #0f3460;
+  border: 2px dashed #334;
+  border-radius: 8px;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  margin-bottom: 1rem;
+}
+
+.test-target:focus {
+  border-color: #a78bfa;
+  outline: none;
+  color: #e0e0e0;
+}
+
+.test-target.flash {
+  background: #1b4332;
+  border-color: #52b788;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.log-header button {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: #334;
+  color: #e0e0e0;
+}
+
+.log {
+  list-style: none;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 0.82rem;
+  font-family: 'SF Mono', Monaco, monospace;
+}
+
+.log li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #1a1a2e;
+}
+
+.log-time {
+  color: #666;
+  margin-right: 0.5rem;
+}
+
+.log-empty {
+  color: #555;
+  font-style: italic;
+}

@@ -17,10 +17,11 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "lint": "biome check src",
-    "lint:fix": "biome check --write src",
-    "format": "biome format --write src",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "playground": "cd playground && pnpm dev"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.15",
