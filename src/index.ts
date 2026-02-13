@@ -9,18 +9,18 @@ const eventType = [DEFAULT_KEY, "keyup"] as const;
 type TEventType = (typeof eventType)[number];
 
 interface TOptions {
-	timeout?: number;
-	event?: TEventType;
+  timeout?: number;
+  event?: TEventType;
 }
 
 const triggerCallback = (
-	key: string,
-	keyEvents: TEventsMap,
-	event: KeyboardEvent,
+  key: string,
+  keyEvents: TEventsMap,
+  event: KeyboardEvent,
 ) => {
-	if (key in keyEvents) {
-		keyEvents[key](event);
-	}
+  if (key in keyEvents) {
+    keyEvents[key](event);
+  }
 };
 
 /**
@@ -46,45 +46,44 @@ const triggerCallback = (
  * ```
  */
 export const nycklar = (
-	target: Window | HTMLElement,
-	keyEvents: TEventsMap,
-	options: TOptions = {},
+  target: Window | HTMLElement,
+  keyEvents: TEventsMap,
+  options: TOptions = {},
 ) => {
-	let keysPressed: string[] = [];
+  let keysPressed: string[] = [];
 
-	const { timeout = DEFAULT_TIMEOUT, event = DEFAULT_KEY } = options;
+  const { timeout = DEFAULT_TIMEOUT, event = DEFAULT_KEY } = options;
 
-	let timer: number | null = null;
+  let timer: number | null = null;
 
-	const mapEvents = (e: Event) => {
-		// INFO: we only care about keyboard events
-		if (!(e instanceof KeyboardEvent)) return;
+  const mapEvents = (e: Event) => {
+    // INFO: we only care about keyboard events
+    if (!(e instanceof KeyboardEvent)) return;
 
-		// INFO: we don't want to listen to user input keystrokes
-		if (
-			e.target instanceof HTMLInputElement ||
-			e.target instanceof HTMLTextAreaElement ||
-			(e.target instanceof HTMLElement &&
-				(e.target.isContentEditable ||
-					e.target.contentEditable === "true"))
-		)
-			return;
+    // INFO: we don't want to listen to user input keystrokes
+    if (
+      e.target instanceof HTMLInputElement ||
+      e.target instanceof HTMLTextAreaElement ||
+      (e.target instanceof HTMLElement &&
+        (e.target.isContentEditable || e.target.contentEditable === "true"))
+    )
+      return;
 
-		const hasMetaKey = e.altKey || e.ctrlKey || e.shiftKey;
-		keysPressed.push(e.key);
-		const result = keysPressed.join(hasMetaKey ? "+" : "");
-		if (timer !== null) {
-			clearTimeout(timer);
-		}
-		timer = setTimeout(() => {
-			triggerCallback(result, keyEvents, e);
-			keysPressed = [];
-		}, timeout);
-	};
+    const hasMetaKey = e.altKey || e.ctrlKey || e.shiftKey;
+    keysPressed.push(e.key);
+    const result = keysPressed.join(hasMetaKey ? "+" : "");
+    if (timer !== null) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      triggerCallback(result, keyEvents, e);
+      keysPressed = [];
+    }, timeout);
+  };
 
-	target.addEventListener(event, mapEvents);
+  target.addEventListener(event, mapEvents);
 
-	return () => {
-		target.removeEventListener(event, mapEvents);
-	};
+  return () => {
+    target.removeEventListener(event, mapEvents);
+  };
 };

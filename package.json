@@ -13,12 +13,14 @@
     }
   },
   "types": "./dist/index.d.mts",
+  "files": ["dist"],
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
     "lint": "biome check src",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "playground": "cd playground && pnpm dev"
